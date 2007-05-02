@@ -2,22 +2,21 @@
 %define libname %mklibname %{name} 0
 
 %define	name    sofia-sip
-%define	version 1.11.7
-%define	release %mkrel 2
+%define	version 1.12.6
+%define	release %mkrel 1
 
-Summary:	An open-source SIP  User-Agent library
+Summary:	An open-source SIP User-Agent library
 Name:		%{name}
 Version:	%{version}
 Release:	%{release}
 License:	GPL
 Url:		http://sofia-sip.sourceforge.net/
 Group:		Networking/Instant messaging
-Source0:	http://ovh.dl.sourceforge.net/sourceforge/sofia-sip/%{name}-%{version}.tar.bz2
+Source0:	http://downloads.sourceforge.net/sofia-sip/sofia-sip-%{version}.tar.gz
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 BuildRequires:  pkgconfig
 
 %description
-
 Sofia-SIP is an open-source SIP  User-Agent library, 
 compliant with the IETF RFC3261 specification (see the 
 feature table). It can be used as a building block for 
@@ -73,23 +72,28 @@ rm -rf $RPM_BUILD_ROOT
 %{_bindir}/addrinfo
 %{_bindir}/localinfo
 %{_bindir}/sip-date
+%{_bindir}/sip-dig
 %{_bindir}/sip-options
-
+%{_bindir}/stunc
 %{_mandir}/man1/addrinfo.1.bz2
 %{_mandir}/man1/localinfo.1.bz2
 %{_mandir}/man1/sip-date.1.bz2
+%{_mandir}/man1/sip-dig.1.bz2
 %{_mandir}/man1/sip-options.1.bz2
+%{_mandir}/man1/stunc.1.bz2
 
 %files -n %{libname}
 %defattr(-,root,root)
 %{_libdir}/libsofia-sip-ua.so.0
-%{_libdir}/libsofia-sip-ua.so.0.0.0
-%{_libdir}/libsofia-sip-ua-glib.so.0
-%{_libdir}/libsofia-sip-ua-glib.so.0.0.0
+%{_libdir}/libsofia-sip-ua.so.0.5.0
+%{_libdir}/libsofia-sip-ua-glib.so.3
+%{_libdir}/libsofia-sip-ua-glib.so.3.0.0
 
 %files -n %{libname}-devel
 %defattr(-,root,root)
-%{_includedir}/sofia-sip-1.11/sofia-sip/
+%{_datadir}/sofia-sip/msg_parser.awk
+%{_datadir}/sofia-sip/tag_dll.awk
+%{_includedir}/sofia-sip-1.12
 %{_libdir}/libsofia-sip-ua-glib.a
 %{_libdir}/libsofia-sip-ua-glib.la
 %{_libdir}/libsofia-sip-ua-glib.so
@@ -98,8 +102,3 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/libsofia-sip-ua.so
 %{_libdir}/pkgconfig/sofia-sip-ua-glib.pc
 %{_libdir}/pkgconfig/sofia-sip-ua.pc
-%{_libdir}/sofia/msg_parser.awk
-%{_libdir}/sofia/tag_dll.awk
-%{_datadir}/aclocal/sac-general.m4
-%{_datadir}/aclocal/sac-su.m4
-
