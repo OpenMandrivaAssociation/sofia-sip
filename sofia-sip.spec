@@ -14,7 +14,8 @@ Url:		http://sofia-sip.sourceforge.net/
 Group:		Networking/Instant messaging
 Source0:	http://downloads.sourceforge.net/sofia-sip/sofia-sip-%{version}.tar.gz
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
-BuildRequires:  pkgconfig
+BuildRequires:	libopenssl-devel
+BuildRequires:	pkgconfig
 
 %description
 Sofia-SIP is an open-source SIP  User-Agent library, 
@@ -44,6 +45,16 @@ Provides:	%{libname_orig}-devel = %{version}-%{release}
 
 %description -n %{libname}-devel
 Headers of %{name} for development.
+
+%package -n %{libname}-static-devel
+Summary:	Static development files for %{name}
+Group:		Development/C
+Requires:	%{libname}-devel = %{version}
+Provides:	%{name}-static-devel = %{version}-%{release}
+Provides:	%{libname_orig}-static-devel = %{version}-%{release}
+
+%description -n %{libname}-static-devel
+Static development files for %{name}
 
 %prep
 %setup -q
@@ -94,11 +105,14 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/sofia-sip/msg_parser.awk
 %{_datadir}/sofia-sip/tag_dll.awk
 %{_includedir}/sofia-sip-1.12
-%{_libdir}/libsofia-sip-ua-glib.a
 %{_libdir}/libsofia-sip-ua-glib.la
 %{_libdir}/libsofia-sip-ua-glib.so
-%{_libdir}/libsofia-sip-ua.a
 %{_libdir}/libsofia-sip-ua.la
 %{_libdir}/libsofia-sip-ua.so
 %{_libdir}/pkgconfig/sofia-sip-ua-glib.pc
 %{_libdir}/pkgconfig/sofia-sip-ua.pc
+
+%files -n %{libname}-static-devel
+%defattr(-,root,root)
+%{_libdir}/libsofia-sip-ua.a
+%{_libdir}/libsofia-sip-ua-glib.a
