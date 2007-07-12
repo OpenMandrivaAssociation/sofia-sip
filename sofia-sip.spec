@@ -1,9 +1,11 @@
 %define libname_orig lib%{name}
 %define libname %mklibname %{name} 0
+%define develname %mklibname -d %{name}
+%define staticdevelname %mklibname -d -s %{name}
 
 %define	name    sofia-sip
 %define	version 1.12.6
-%define	release %mkrel 1
+%define	release %mkrel 2
 
 Summary:	An open-source SIP User-Agent library
 Name:		%{name}
@@ -37,24 +39,26 @@ Requires:	%name = %version-%release
 %description -n %{libname}
 Library for %{name}
 
-%package -n %{libname}-devel
+%package -n %{develname}
 Summary:	Headers of %name for development
 Group:		Development/C
 Requires:	%{libname} = %{version}
 Provides:	%{name}-devel = %{version}-%{release}
 Provides:	%{libname_orig}-devel = %{version}-%{release}
+Obsoletes:	%{libname}-devel
 
-%description -n %{libname}-devel
+%description -n %{develname}
 Headers of %{name} for development.
 
-%package -n %{libname}-static-devel
+%package -n %{staticdevelname}
 Summary:	Static development files for %{name}
 Group:		Development/C
 Requires:	%{libname}-devel = %{version}
 Provides:	%{name}-static-devel = %{version}-%{release}
 Provides:	%{libname_orig}-static-devel = %{version}-%{release}
+Obsoletes:	%{libname}-static-devel
 
-%description -n %{libname}-static-devel
+%description -n %{staticdevelname}
 Static development files for %{name}
 
 %prep
@@ -101,7 +105,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/libsofia-sip-ua-glib.so.3
 %{_libdir}/libsofia-sip-ua-glib.so.3.0.0
 
-%files -n %{libname}-devel
+%files -n %{develname}
 %defattr(-,root,root)
 %{_datadir}/sofia-sip/msg_parser.awk
 %{_datadir}/sofia-sip/tag_dll.awk
@@ -113,7 +117,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/pkgconfig/sofia-sip-ua-glib.pc
 %{_libdir}/pkgconfig/sofia-sip-ua.pc
 
-%files -n %{libname}-static-devel
+%files -n %{staticdevelname}
 %defattr(-,root,root)
 %{_libdir}/libsofia-sip-ua.a
 %{_libdir}/libsofia-sip-ua-glib.a
