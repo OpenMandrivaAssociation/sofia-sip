@@ -91,12 +91,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_bindir}/sip-dig
 %{_bindir}/sip-options
 %{_bindir}/stunc
-%{_mandir}/man1/addrinfo.1.bz2
-%{_mandir}/man1/localinfo.1.bz2
-%{_mandir}/man1/sip-date.1.bz2
-%{_mandir}/man1/sip-dig.1.bz2
-%{_mandir}/man1/sip-options.1.bz2
-%{_mandir}/man1/stunc.1.bz2
+%{_mandir}/man1/*
 
 %files -n %{libname}
 %defattr(-,root,root)
