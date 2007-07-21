@@ -5,7 +5,7 @@
 
 %define	name    sofia-sip
 %define	version 1.12.6
-%define	release %mkrel 2
+%define	release %mkrel 3
 
 Summary:	An open-source SIP User-Agent library
 Name:		%{name}
@@ -53,7 +53,7 @@ Headers of %{name} for development.
 %package -n %{staticdevelname}
 Summary:	Static development files for %{name}
 Group:		Development/C
-Requires:	%{libname}-devel = %{version}
+Requires:	%{develname} = %{version}-%{release}
 Provides:	%{name}-static-devel = %{version}-%{release}
 Provides:	%{libname_orig}-static-devel = %{version}-%{release}
 Obsoletes:	%{libname}-static-devel
