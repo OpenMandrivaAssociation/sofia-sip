@@ -15,6 +15,7 @@ License:	GPL
 Url:		http://sofia-sip.sourceforge.net/
 Group:		Networking/Instant messaging
 Source0:	http://downloads.sourceforge.net/sofia-sip/sofia-sip-%{version}.tar.gz
+BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 BuildRequires:	glib2-devel
 BuildRequires:	libopenssl-devel
 BuildRequires:	pkgconfig
