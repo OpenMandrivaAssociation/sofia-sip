@@ -4,8 +4,8 @@
 %define staticdevelname %mklibname -d -s %{name}
 
 %define	name    sofia-sip
-%define	version 1.12.6
-%define	release %mkrel 3
+%define	version 1.12.8
+%define	release %mkrel 1
 
 Summary:	An open-source SIP User-Agent library
 Name:		%{name}
@@ -96,7 +96,7 @@ rm -rf $RPM_BUILD_ROOT
 %files -n %{libname}
 %defattr(-,root,root)
 %{_libdir}/libsofia-sip-ua.so.0
-%{_libdir}/libsofia-sip-ua.so.0.5.0
+%{_libdir}/libsofia-sip-ua.so.0.6.0
 %{_libdir}/libsofia-sip-ua-glib.so.3
 %{_libdir}/libsofia-sip-ua-glib.so.3.0.0
 
