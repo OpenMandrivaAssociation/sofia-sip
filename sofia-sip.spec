@@ -4,21 +4,26 @@
 %define staticdevelname %mklibname -d -s %{name}
 
 %define	name    sofia-sip
-%define	version 1.12.8
-%define	release %mkrel 4
+%define	version 1.12.10
+%define	release %mkrel 1
 
 Summary:	An open-source SIP User-Agent library
 Name:		%{name}
 Version:	%{version}
 Release:	%{release}
-License:	GPL
+License:	LGPLv2+
 Url:		http://sofia-sip.sourceforge.net/
 Group:		Networking/Instant messaging
 Source0:	http://downloads.sourceforge.net/sofia-sip/sofia-sip-%{version}.tar.gz
+# From Fedora
+Patch0:		sofia-sip-1.12.10-undefined-non-weak-symbol.patch	
+Patch1:		sofia-sip-1.12.10-string-format.patch
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 BuildRequires:	glib2-devel
 BuildRequires:	libopenssl-devel
 BuildRequires:	pkgconfig
+BuildRequires:	autoconf
+BuildRequires:	automake
 
 %description
 Sofia-SIP is an open-source SIP  User-Agent library, 
@@ -63,20 +68,26 @@ Static development files for %{name}
 
 %prep
 %setup -q
+%patch0 -p0 -b .weak-symbol
+%patch1 -p1 -b .string-format
 
 %build
-
-%configure2_5x
+libtoolize --automake --force
+aclocal -I m4 --force
+autoheader --force
+autoconf --force
+automake --gnu --force-missing --add-missing
+%configure2_5x --disable-rpath
 %make
 
 %install
-rm -rf $RPM_BUILD_ROOT
+rm -rf %{buildroot}
 
 %{makeinstall_std}
 
 
 %clean
-rm -rf $RPM_BUILD_ROOT
+rm -rf %{buildroot}
 
 %if %mdkversion < 200900
 %post -n %{libname} -p /sbin/ldconfig
