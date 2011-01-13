@@ -16,8 +16,10 @@ Url:		http://sofia-sip.sourceforge.net/
 Group:		Networking/Instant messaging
 Source0:	http://downloads.sourceforge.net/sofia-sip/sofia-sip-%{version}.tar.gz
 # From Fedora
-Patch0:		sofia-sip-1.12.10-undefined-non-weak-symbol.patch	
+Patch0:		sofia-sip-1.12.10-undefined-non-weak-symbol.patch
 Patch1:		sofia-sip-1.12.10-string-format.patch
+# need for unimrcp, URL: http://www.unimrcp.org/dependencies/
+Patch2:		p2-sofia-tcp-uas.diff
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 BuildRequires:	glib2-devel
 BuildRequires:	libopenssl-devel
@@ -70,6 +72,7 @@ Static development files for %{name}
 %setup -q
 %patch0 -p0 -b .weak-symbol
 %patch1 -p1 -b .string-format
+%patch2 -p1 -b .tcp-uas
 
 %build
 libtoolize --automake --force
