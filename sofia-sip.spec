@@ -5,7 +5,7 @@
 
 %define	name    sofia-sip
 %define	version 1.12.10
-%define	release %mkrel 5
+%define	release %mkrel 6
 
 Summary:	An open-source SIP User-Agent library
 Name:		%{name}
@@ -19,7 +19,7 @@ Source0:	http://downloads.sourceforge.net/sofia-sip/sofia-sip-%{version}.tar.gz
 Patch0:		sofia-sip-1.12.10-undefined-non-weak-symbol.patch
 Patch1:		sofia-sip-1.12.10-string-format.patch
 # need for unimrcp, URL: http://www.unimrcp.org/dependencies/
-Patch2:		p2-sofia-tcp-uas.diff
+# Patch2:		p2-sofia-tcp-uas.diff
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 BuildRequires:	glib2-devel
 BuildRequires:	libopenssl-devel
