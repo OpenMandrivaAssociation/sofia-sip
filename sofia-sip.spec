@@ -4,8 +4,8 @@
 %define staticdevelname %mklibname -d -s %{name}
 
 %define	name    sofia-sip
-%define	version 1.12.10
-%define	release %mkrel 6
+%define	version 1.12.11
+%define	release %mkrel 1
 
 Summary:	An open-source SIP User-Agent library
 Name:		%{name}
@@ -70,9 +70,9 @@ Static development files for %{name}
 
 %prep
 %setup -q
-%patch0 -p0 -b .weak-symbol
-%patch1 -p1 -b .string-format
-%patch2 -p1 -b .tcp-uas
+#%patch0 -p0 -b .weak-symbol
+#%patch1 -p1 -b .string-format
+#%patch2 -p1 -b .tcp-uas
 
 %build
 libtoolize --automake --force
