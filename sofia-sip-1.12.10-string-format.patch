@@ -1,0 +1,15 @@
+diff -ur sofia-sip-1.12.10.orig/libsofia-sip-ua/tport/tport_logging.c sofia-sip-1.12.10/libsofia-sip-ua/tport/tport_logging.c
+--- sofia-sip-1.12.10.orig/libsofia-sip-ua/tport/tport_logging.c	2008-12-08 15:52:45.000000000 +0100
++++ sofia-sip-1.12.10/libsofia-sip-ua/tport/tport_logging.c	2009-01-17 11:53:10.000000000 +0100
+@@ -232,8 +232,8 @@
+     n += iov[i].mv_len;
+ 
+   tport_stamp(self, msg, stamp, what, n, via, now);
+-  su_log(stamp);
+-  su_log("   " MSG_SEPARATOR);
++  su_log("%s", stamp);
++  su_log("%s", "   " MSG_SEPARATOR);
+ 
+   for (i = 0; truncated == 0 && i < iovlen && i < 80; i++) {
+     char *s = iov[i].mv_base, *end = s + iov[i].mv_len;
+Only in sofia-sip-1.12.10/libsofia-sip-ua/tport: tport_logging.c~
