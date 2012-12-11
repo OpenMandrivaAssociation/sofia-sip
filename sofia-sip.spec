@@ -15,14 +15,8 @@ License:	LGPLv2+
 Url:		http://sofia-sip.sourceforge.net/
 Group:		Networking/Instant messaging
 Source0:	http://downloads.sourceforge.net/sofia-sip/sofia-sip-%{version}.tar.gz
-# From Fedora
-Patch0:		sofia-sip-1.12.10-undefined-non-weak-symbol.patch
-Patch1:		sofia-sip-1.12.10-string-format.patch
-# need for unimrcp, URL: http://www.unimrcp.org/dependencies/
-# Patch2:		p2-sofia-tcp-uas.diff
-BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 BuildRequires:	glib2-devel
-BuildRequires:	libopenssl-devel
+BuildRequires:	pkgconfig(openssl)
 BuildRequires:	pkgconfig
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -70,9 +64,6 @@ Static development files for %{name}
 
 %prep
 %setup -q
-#%patch0 -p0 -b .weak-symbol
-#%patch1 -p1 -b .string-format
-#%patch2 -p1 -b .tcp-uas
 
 %build
 libtoolize --automake --force
@@ -89,20 +80,7 @@ rm -rf %{buildroot}
 %{makeinstall_std}
 
 
-%clean
-rm -rf %{buildroot}
-
-%if %mdkversion < 200900
-%post -n %{libname} -p /sbin/ldconfig
-%endif
-
-%if %mdkversion < 200900
-%postun -n %{libname} -p /sbin/ldconfig
-%endif
-
-
 %files -n %{name}
-%defattr(-,root,root)
 %{_bindir}/addrinfo
 %{_bindir}/localinfo
 %{_bindir}/sip-date
@@ -112,25 +90,21 @@ rm -rf %{buildroot}
 %{_mandir}/man1/*
 
 %files -n %{libname}
-%defattr(-,root,root)
 %{_libdir}/libsofia-sip-ua.so.0
 %{_libdir}/libsofia-sip-ua.so.0.6.0
 %{_libdir}/libsofia-sip-ua-glib.so.3
 %{_libdir}/libsofia-sip-ua-glib.so.3.0.0
 
 %files -n %{develname}
-%defattr(-,root,root)
 %{_datadir}/sofia-sip/msg_parser.awk
 %{_datadir}/sofia-sip/tag_dll.awk
 %{_includedir}/sofia-sip-1.12
-%{_libdir}/libsofia-sip-ua-glib.la
 %{_libdir}/libsofia-sip-ua-glib.so
-%{_libdir}/libsofia-sip-ua.la
 %{_libdir}/libsofia-sip-ua.so
 %{_libdir}/pkgconfig/sofia-sip-ua-glib.pc
 %{_libdir}/pkgconfig/sofia-sip-ua.pc
 
 %files -n %{staticdevelname}
-%defattr(-,root,root)
 %{_libdir}/libsofia-sip-ua.a
 %{_libdir}/libsofia-sip-ua-glib.a
+
