@@ -5,7 +5,7 @@
 
 %define	name    sofia-sip
 %define	version 1.12.11
-%define	release %mkrel 1
+%define release 2
 
 Summary:	An open-source SIP User-Agent library
 Name:		%{name}
