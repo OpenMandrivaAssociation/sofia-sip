@@ -65,6 +65,8 @@ Static development files for %{name}
 %autosetup -p1
 
 %build
+export CC=gcc
+export CXX=g++
 sh autogen.sh
 %configure --disable-rpath --disable-static --without-doxygen --disable-stun
 %make_build     
