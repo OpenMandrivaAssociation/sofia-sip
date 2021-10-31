@@ -66,8 +66,8 @@ Static development files for %{name}
 %autosetup -p1
 
 %build
-export CC=gcc
-export CXX=g++
+#export CC=gcc
+#export CXX=g++
 sh autogen.sh
 %configure --disable-rpath --disable-static --without-doxygen --disable-stun
 %make_build     
@@ -81,8 +81,8 @@ sh autogen.sh
 %{_bindir}/sip-date
 %{_bindir}/sip-dig
 %{_bindir}/sip-options
-%{_bindir}/stunc
-%{_mandir}/man1/*
+#{_bindir}/stunc
+#{_mandir}/man1/*
 
 %files -n %{libname}
 %{_libdir}/libsofia-sip-ua.so.0
