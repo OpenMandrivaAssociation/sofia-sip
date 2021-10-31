@@ -1,8 +1,9 @@
+%define _disable_ld_no_undefined 1
+
 %define libname_orig lib%{name}
 %define libname %mklibname %{name} 0
 %define develname %mklibname -d %{name}
 %define staticdevelname %mklibname -d -s %{name}
-
 
 Summary:	An open-source SIP User-Agent library
 Name:		sofia-sip
