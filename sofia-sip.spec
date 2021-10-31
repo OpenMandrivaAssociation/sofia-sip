@@ -82,7 +82,7 @@ sh autogen.sh
 %files -n %{develname}
 %{_datadir}/sofia-sip/msg_parser.awk
 %{_datadir}/sofia-sip/tag_dll.awk
-#{_includedir}/sofia-sip-1.12
+%{_includedir}/sofia-sip-1.13
 %{_libdir}/libsofia-sip-ua-glib.so
 %{_libdir}/libsofia-sip-ua.so
 %{_libdir}/pkgconfig/sofia-sip-ua-glib.pc
