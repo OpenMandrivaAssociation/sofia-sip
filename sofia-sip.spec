@@ -3,23 +3,22 @@
 %define develname %mklibname -d %{name}
 %define staticdevelname %mklibname -d -s %{name}
 
-%define	name    sofia-sip
-%define	version 1.12.11
-%define release 2
 
 Summary:	An open-source SIP User-Agent library
-Name:		%{name}
-Version:	%{version}
-Release:	%{release}
+Name:		sofia-sip
+Version:	1.13.6
+Release:	1
 License:	LGPLv2+
 Url:		http://sofia-sip.sourceforge.net/
 Group:		Networking/Instant messaging
-Source0:	http://downloads.sourceforge.net/sofia-sip/sofia-sip-%{version}.tar.gz
-BuildRequires:	glib2-devel
+Source0:        https://github.com/freeswitch/%{name}/archive/refs/tags/v%{version}.tar.gz
+BuildRequires:	pkgconfig(glib-2.0)
 BuildRequires:	pkgconfig(openssl)
 BuildRequires:	pkgconfig
 BuildRequires:	autoconf
 BuildRequires:	automake
+BuildRequires:  pkgconfig(libsctp)
+BuildRequires:  libtool
 
 %description
 Sofia-SIP is an open-source SIP  User-Agent library, 
@@ -63,22 +62,15 @@ Obsoletes:	%{libname}-static-devel
 Static development files for %{name}
 
 %prep
-%setup -q
+%autosetup -p1
 
 %build
-libtoolize --automake --force
-aclocal -I m4 --force
-autoheader --force
-autoconf --force
-automake --gnu --force-missing --add-missing
-%configure2_5x --disable-rpath
-%make
+sh autogen.sh
+%configure --disable-rpath --disable-static --without-doxygen --disable-stun
+%make_build     
 
 %install
-rm -rf %{buildroot}
-
-%{makeinstall_std}
-
+%make_install
 
 %files -n %{name}
 %{_bindir}/addrinfo
