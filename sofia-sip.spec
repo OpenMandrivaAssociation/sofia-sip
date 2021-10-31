@@ -3,7 +3,6 @@
 %define libname_orig lib%{name}
 %define libname %mklibname %{name} 0
 %define develname %mklibname -d %{name}
-%define staticdevelname %mklibname -d -s %{name}
 
 Summary:	An open-source SIP User-Agent library
 Name:		sofia-sip
@@ -51,16 +50,6 @@ Obsoletes:	%{libname}-devel
 %description -n %{develname}
 Headers of %{name} for development.
 
-%package -n %{staticdevelname}
-Summary:	Static development files for %{name}
-Group:		Development/C
-Requires:	%{develname} = %{version}-%{release}
-Provides:	%{name}-static-devel = %{version}-%{release}
-Provides:	%{libname_orig}-static-devel = %{version}-%{release}
-Obsoletes:	%{libname}-static-devel
-
-%description -n %{staticdevelname}
-Static development files for %{name}
 
 %prep
 %autosetup -p1
@@ -98,8 +87,4 @@ sh autogen.sh
 %{_libdir}/libsofia-sip-ua.so
 %{_libdir}/pkgconfig/sofia-sip-ua-glib.pc
 %{_libdir}/pkgconfig/sofia-sip-ua.pc
-
-%files -n %{staticdevelname}
-%{_libdir}/libsofia-sip-ua.a
-%{_libdir}/libsofia-sip-ua-glib.a
 
