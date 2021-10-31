@@ -11,7 +11,7 @@ Release:	1
 License:	LGPLv2+
 Url:		http://sofia-sip.sourceforge.net/
 Group:		Networking/Instant messaging
-Source0:        https://github.com/freeswitch/%{name}/archive/refs/tags/v%{version}.tar.gz
+Source0:        https://github.com/freeswitch/%{name}/archive/refs/tags/v%{version}/%{name}-%{version}.tar.gz
 BuildRequires:	pkgconfig(glib-2.0)
 BuildRequires:	pkgconfig(openssl)
 BuildRequires:	pkgconfig
