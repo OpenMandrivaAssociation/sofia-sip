@@ -7,7 +7,7 @@
 Summary:	An open-source SIP User-Agent library
 Name:		sofia-sip
 Version:	1.13.12
-Release:	1
+Release:	2
 License:	LGPLv2+
 Url:		http://sofia-sip.sourceforge.net/
 Group:		Networking/Instant messaging
