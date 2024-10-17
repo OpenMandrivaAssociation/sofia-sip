@@ -9,7 +9,7 @@ Name:		sofia-sip
 Version:	1.13.17
 Release:	1
 License:	LGPLv2+
-Url:		http://sofia-sip.sourceforge.net/
+Url:		https://sofia-sip.sourceforge.net/
 Group:		Networking/Instant messaging
 Source0:        https://github.com/freeswitch/%{name}/archive/refs/tags/v%{version}/%{name}-%{version}.tar.gz
 BuildRequires:	pkgconfig(glib-2.0)
